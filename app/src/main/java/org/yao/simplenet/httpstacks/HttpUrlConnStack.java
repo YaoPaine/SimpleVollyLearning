@@ -9,9 +9,11 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicStatusLine;
 import org.yao.simplenet.base.Request;
 import org.yao.simplenet.base.Response;
+import org.yao.simplenet.config.HttpUrlConnConfig;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +29,7 @@ public class HttpUrlConnStack implements HttpStack {
     /**
      *
      */
-    private HttpConnConfig mHttpConfig = new HttpConnConfig();
+    private HttpUrlConnConfig mHttpConfig = HttpUrlConnConfig.getInstance();
 
     @Override
     public Response performRequest(Request<?> request) {

@@ -1,11 +1,10 @@
 package org.yao.simplenet.cache;
 
-import org.yao.simplenet.base.Request;
-import org.yao.simplenet.base.Response;
+public interface Cache<K, V> {
 
-public interface Cache<T, M> {
+    V get(K key);
 
-    Response get(Request<?> request);
+    void put(K key, V value);
 
-    void put(Request<?> request, Response response);
+    void remove(K key);
 }

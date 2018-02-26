@@ -1,6 +1,7 @@
 package org.yao.simplenet.core;
 
 import android.util.Log;
+
 import org.yao.simplenet.base.Request;
 import org.yao.simplenet.base.Response;
 import org.yao.simplenet.cache.Cache;
@@ -22,7 +23,7 @@ public class NetworkExecutor extends Thread {
     /**
      * 请求缓存
      */
-    private Cache<String, Response> mReqCache = new LruMemCache<>();
+    private Cache<Request<?>, Response> mReqCache = new LruMemCache();
 
     /**
      * 结果分发器,将结果投递到主线程
@@ -49,9 +50,9 @@ public class NetworkExecutor extends Thread {
                     Log.d("###", "###: 请求已经被取消了");
                     continue;
                 }
-                Response response = null;
+                Response response;
                 if (isUseCache(request)) {
-
+                    response = mReqCache.get(request);
                 } else {
                     response = mHttpStack.performRequest(request);
                     if (isSuccess(response)) {

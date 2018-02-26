@@ -28,4 +28,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile files('libs/httpclient-4.5.5.jar')
+    compile files('libs/httpcore-4.4.jar')
 }
