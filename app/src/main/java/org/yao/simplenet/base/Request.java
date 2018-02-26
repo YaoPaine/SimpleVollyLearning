@@ -50,6 +50,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      */
     private static final String DEFAULT_PARAMS_ENCODING = "UTF-8";
 
+    public static final String HEADER_CONTENT_TYPE = "Content-Type:";
     /**
      * 请求优先级,默认设置NORMAL
      */
@@ -66,12 +67,16 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * 请求是否应该缓存
      */
     private boolean isShouldCache = true;
+    /**
+     * 是否是https请求
+     */
+    private boolean isHttps = false;
 
     private RequestListener<T> mListener;
     /**
      * 请求的url
      */
-    private String mUrl = "";
+    private String mUrl;
     /**
      * 请求方法
      */
@@ -163,6 +168,14 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
     public boolean isCanceled() {
         return isCancel;
+    }
+
+    public boolean isHttps() {
+        return isHttps;
+    }
+
+    public void setHttps(boolean https) {
+        isHttps = https;
     }
 
     /**
